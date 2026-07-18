@@ -1,0 +1,51 @@
+food_name,region,vegetarian,calories,protein_g,carbs_g,fat_g,fiber_g,ayurvedic_type,cooking_method
+Masoor Dal,North,True,116,9.0,20.1,0.4,7.9,Pitta-pacifying,Pressure-cooked
+Chana Dal,North,True,164,10.3,27.4,2.6,7.6,Kapha-pacifying,Pressure-cooked
+Moong Dal,North,True,105,7.5,19.1,0.4,7.6,Tridoshic,Pressure-cooked
+Toor Dal (Arhar),South,True,121,7.0,22.0,0.4,5.0,Vata-aggravating,Pressure-cooked
+Urad Dal,South,True,105,7.6,17.9,0.6,4.9,Kapha-aggravating,Pressure-cooked
+Basmati Rice (cooked),North,True,121,2.7,25.2,0.4,0.4,Tridoshic,Boiled
+Brown Rice (cooked),Pan-India,True,111,2.6,23.0,0.9,1.8,Vata-aggravating,Boiled
+Ragi (Finger Millet) Porridge,South,True,97,2.0,20.1,0.4,2.7,Kapha-pacifying,Boiled
+Jowar Roti,West,True,109,3.1,22.5,1.7,3.5,Vata-pacifying,Roasted
+Bajra Roti,West,True,97,3.3,17.7,1.0,3.7,Kapha-pacifying,Roasted
+Whole Wheat Roti,North,True,120,3.6,24.0,0.6,3.0,Tridoshic,Roasted
+Idli,South,True,58,2.0,12.0,0.2,0.6,Tridoshic,Steamed
+Dosa (plain),South,True,133,3.0,20.0,4.5,1.0,Pitta-pacifying,Shallow-fried
+Uttapam,South,True,120,3.5,18.0,3.0,1.2,Tridoshic,Shallow-fried
+Paratha (plain),North,True,260,5.5,32.0,12.0,2.5,Kapha-aggravating,Shallow-fried
+Poha,West,True,158,3.0,27.0,4.0,1.5,Vata-pacifying,Sauteed
+Upma,South,True,132,3.5,20.0,4.5,1.7,Kapha-pacifying,Sauteed
+Paneer Tikka,North,True,242,18.0,6.0,17.0,0.8,Kapha-aggravating,Grilled
+Palak Paneer,North,True,180,9.5,7.0,13.0,2.2,Pitta-pacifying,Sauteed
+Paneer Butter Masala,North,True,290,11.0,12.0,22.0,1.5,Kapha-aggravating,Sauteed
+Chana Masala (Chole),North,True,164,8.9,27.4,2.6,7.6,Vata-aggravating,Simmered
+Rajma (Kidney Bean Curry),North,True,140,8.7,22.8,0.8,6.4,Vata-aggravating,Simmered
+Sambar,South,True,102,5.0,15.0,2.5,4.0,Pitta-pacifying,Simmered
+Rasam,South,True,45,1.5,7.0,1.2,1.0,Pitta-pacifying,Simmered
+Aloo Gobi,North,True,120,2.7,15.0,6.0,3.2,Vata-aggravating,Sauteed
+Bhindi Masala (Okra),North,True,95,2.1,9.0,6.0,3.6,Vata-aggravating,Sauteed
+Baingan Bharta,North,True,110,2.5,10.0,7.0,4.0,Pitta-pacifying,Roasted
+Palak (Spinach) Sabzi,North,True,80,3.5,6.0,5.0,2.4,Pitta-pacifying,Sauteed
+Cauliflower Curry,North,True,105,2.8,10.0,6.5,3.0,Vata-aggravating,Sauteed
+Mixed Vegetable Curry,Pan-India,True,115,3.0,14.0,5.5,3.5,Tridoshic,Sauteed
+Curd (Dahi),Pan-India,True,60,3.4,4.7,3.3,0.0,Kapha-aggravating,Raw
+Buttermilk (Chaas),South,True,40,1.5,3.0,2.0,0.0,Pitta-pacifying,Raw
+Ghee,Pan-India,True,900,0.0,0.0,100.0,0.0,Vata-pacifying,Clarified
+Mustard Oil,East,True,884,0.0,0.0,100.0,0.0,Kapha-pacifying,Raw
+Tamarind Chutney,South,True,120,1.0,28.0,0.3,2.0,Pitta-aggravating,Simmered
+Mint-Coriander Chutney,North,True,45,2.0,6.0,1.5,2.5,Pitta-pacifying,Raw
+Papad (roasted),North,True,40,2.0,6.5,0.7,1.0,Vata-aggravating,Roasted
+Pickle (Achaar - Mango),West,True,150,1.0,10.0,12.0,2.0,Pitta-aggravating,Fermented
+Khichdi,North,True,120,4.0,20.0,2.5,2.0,Tridoshic,Simmered
+Biryani (Vegetable),South,True,200,4.5,32.0,6.5,2.5,Kapha-aggravating,Steamed
+Pulao (Peas),North,True,180,4.0,30.0,5.0,2.0,Tridoshic,Steamed
+Egg Curry,East,False,160,10.0,6.0,11.0,1.0,Pitta-aggravating,Simmered
+Chicken Curry,South,False,190,18.0,6.0,11.0,1.0,Pitta-aggravating,Simmered
+Fish Curry,East,False,150,17.0,5.0,7.0,0.8,Vata-pacifying,Simmered
+Sprouted Moong Salad,Pan-India,True,105,7.0,19.0,0.5,4.0,Vata-aggravating,Raw
+Coconut Chutney,South,True,180,3.0,8.0,16.0,4.5,Pitta-pacifying,Raw
+Sabudana Khichdi,West,True,180,2.0,35.0,4.0,1.0,Vata-aggravating,Sauteed
+Dhokla,West,True,160,6.0,25.0,3.5,2.0,Kapha-pacifying,Steamed
+Payasam (Kheer),South,True,150,4.0,22.0,5.0,0.3,Kapha-aggravating,Simmered
+Jaggery (Gur),Pan-India,True,383,0.0,98.0,0.0,0.0,Vata-pacifying,Raw
