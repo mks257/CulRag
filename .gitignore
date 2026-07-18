@@ -219,3 +219,10 @@ __marimo__/
 
 # CulRAG local vector store persistence
 data/chroma/
+
+# CulRAG runtime user data (survives via deploy volume, not git)
+data/feedback.json
+
+# Frontend
+culrag-frontend/node_modules/
+culrag-frontend/dist/
