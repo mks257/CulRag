@@ -1,0 +1,463 @@
+## **Claude Code: CulRAG Development Prompt**
+
+---
+
+## **How to Use Claude Code for This Project**
+
+### **Setup**
+1. Open **Claude Desktop** (or claude.ai → Code tab)
+2. Open your `culrag/` folder
+3. Copy the prompt below
+4. Paste into Claude Code chat
+5. Let Claude generate the code
+
+### **Workflow**
+- **Phase 1:** Core RAG pipeline
+- **Phase 2:** Evaluation framework
+- **Phase 3:** Data processing scripts
+- **Phase 4:** Tests + documentation
+
+---
+
+## **MASTER PROMPT: Start Phase 1 (Week 1-2)**
+
+```
+PROJECT: CulRAG - Culturally Grounded RAG for Indian Dietary Guidance
+
+CONTEXT:
+- Research paper on RAG + Indian food knowledge base
+- Target: IEEE Access / Frontiers in AI
+- Timeline: 8 weeks
+- Team: Kavya (RAG/LLM lead) + Vartan (data lead)
+- Tech stack: Python, LangChain, OpenAI/Claude, Pinecone, Pandas
+
+PHASE 1 GOALS (Week 1-2):
+1. Create project structure ✅ (GitHub ready)
+2. Set up dependencies ✅ (requirements.txt ready)
+3. Build RAG pipeline skeleton
+4. Implement basic retriever
+5. Create evaluation framework stubs
+6. Add test data (50 sample Indian foods)
+
+TASK: Build Phase 1 - Core RAG Pipeline
+
+START HERE - Create these files:
+
+1. src/rag_pipeline.py
+   - CulRAG class (main RAG system)
+   - Methods: load_knowledge_base(), retrieve(), generate()
+   - Use LangChain + OpenAI
+   - Include error handling
+
+2. src/retriever.py
+   - VectorRetriever class
+   - Initialize Pinecone/Chroma vector DB
+   - Methods: index_documents(), search(), similarity_search()
+   - Support for k-nearest neighbors retrieval
+
+3. src/llm_chain.py
+   - RAGChain class
+   - Integrate LLM (Claude/GPT-4)
+   - Prompt templates for nutrition recommendations
+   - Methods: generate_recommendation(), format_response()
+
+4. src/guardrails.py
+   - Constraint checker class
+   - Validate: vegetarian, calorie limits, allergies
+   - Hallucination detection (basic)
+   - Methods: check_constraints(), flag_hallucinations()
+
+5. data/sample_foods.csv
+   - 50 sample Indian foods (IFCT format)
+   - Columns: food_name, calories, protein_g, carbs_g, fat_g, fiber_g, region, vegetarian, ayurvedic_type
+   - Examples: paneer tikka, dal, rice, etc.
+
+6. notebooks/01_data_exploration.ipynb
+   - Load sample foods
+   - Visualize macro distributions
+   - Test retrieval on sample queries
+
+7. tests/test_retriever.py
+   - Unit tests for vector DB initialization
+   - Test similarity search
+   - Mock data tests
+
+REQUIREMENTS:
+- Use LangChain for RAG orchestration
+- Support both Pinecone and Chroma (local fallback)
+- Clean, documented code with type hints
+- Error handling for API failures
+- docstrings for all methods
+- Ready for Vartan to integrate large food database
+
+OUTPUT: 
+- All 7 files with complete, runnable code
+- Requirements validated against requirements.txt
+- Comments explaining each component
+- No stub code - production-ready
+
+FORMAT:
+- Python type hints throughout
+- Docstrings (Google style)
+- Logging for debugging
+- Config file support (.env)
+
+FOCUS AREAS:
+1. RAG retrieval should work before LLM generation
+2. Make it easy to swap vector DB (Pinecone ↔ Chroma)
+3. Sample foods should be realistic (include nutritional accuracy)
+4. Code should run without Vartan's large dataset first
+5. Leave TODOs for Phase 2 (evaluation metrics)
+
+Start with src/rag_pipeline.py - that's the main orchestrator.
+```
+
+---
+
+## **PHASE 1 DETAILED PROMPTS**
+
+### **Prompt 1: RAG Pipeline Core**
+
+```
+Build src/rag_pipeline.py
+
+Requirements:
+- CulRAG class that orchestrates the full RAG system
+- __init__(vector_db_type, llm_model, knowledge_base_path)
+- Methods:
+  1. load_knowledge_base(csv_path) - Load Indian foods CSV
+  2. index_documents() - Create embeddings + store in vector DB
+  3. retrieve(query, k=5) - Retrieve top-k relevant foods
+  4. generate(query, retrieved_docs) - LLM generates recommendation
+  5. recommend(user_query, user_constraints=None) - End-to-end
+- Support for environment variables (API keys)
+- Error handling for API failures
+- Logging for debugging
+
+Use:
+- LangChain's RetrievalQA or custom chain
+- OpenAI embeddings or Claude
+- Type hints + docstrings
+- Config management (python-dotenv)
+
+Output a complete, runnable class.
+```
+
+---
+
+### **Prompt 2: Vector Retriever**
+
+```
+Build src/retriever.py
+
+Requirements:
+- VectorRetriever class (abstraction for vector DB)
+- Constructor: __init__(vector_db_type="pinecone", index_name="culrag")
+- Methods:
+  1. initialize_db() - Connect to Pinecone/Chroma
+  2. index_documents(documents, metadata) - Add foods to DB
+  3. search(query_embedding, k=5) - Similarity search
+  4. delete_index() - Clean up (for testing)
+  5. get_stats() - Return index size, dimensions
+- Support both Pinecone (cloud) and Chroma (local)
+- Handle connection errors gracefully
+- Use OpenAI embeddings (text-embedding-3-small for cost)
+- Document format: {text: "paneer tikka", metadata: {calories: 242, ...}}
+
+Include:
+- Docstrings with examples
+- Type hints
+- Logging statements
+- Config management
+
+Output complete VectorRetriever class.
+```
+
+---
+
+### **Prompt 3: LLM Chain**
+
+```
+Build src/llm_chain.py
+
+Requirements:
+- RAGChain class integrates retrieval + LLM
+- Constructor: __init__(model="gpt-4", temperature=0.7)
+- Methods:
+  1. create_prompt(query, retrieved_foods) - Build context
+  2. generate_recommendation(query, retrieved_docs) - LLM generates meal plan
+  3. format_response(raw_llm_output) - Structured response (JSON)
+- Prompt template should:
+  - Ask LLM to recommend Indian meals from retrieved foods
+  - Include macros, calories, portions
+  - Consider user preferences (vegetarian, regional, etc.)
+  - Be culturally aware (mention Ayurvedic properties if relevant)
+- Output format:
+  {
+    "meal_name": "Paneer Tikka with Dal",
+    "calories": 650,
+    "macros": {"protein_g": 45, "carbs_g": 55, "fat_g": 25},
+    "portion": "300g",
+    "reasoning": "High protein, low fat, vegetarian"
+  }
+
+Include:
+- Prompt engineering best practices
+- Temperature setting for consistency
+- Error handling (LLM timeouts, invalid responses)
+- Logging of prompts/outputs for debugging
+- Type hints + docstrings
+
+Output complete RAGChain class.
+```
+
+---
+
+### **Prompt 4: Guardrails**
+
+```
+Build src/guardrails.py
+
+Requirements:
+- GuardrailChecker class for constraint validation
+- Constructor: __init__(llm_model="gpt-4")
+- Methods:
+  1. check_vegetarian(recommendation, user_constraints) - Validate vegetarian
+  2. check_calories(recommendation, target_range) - Calories in range
+  3. check_allergies(recommendation, allergies_list) - No forbidden foods
+  4. detect_hallucinations(recommendation, knowledge_base) - Flag made-up foods
+  5. run_all_checks(recommendation, constraints_dict) - Comprehensive check
+
+Constraints dict format:
+{
+  "vegetarian": True,
+  "target_calories": (1500, 2000),
+  "allergies": ["peanuts", "shellfish"],
+  "regional_preference": "South Indian",
+  "max_cooking_time": 30
+}
+
+Hallucination detection:
+- Check if each food exists in knowledge base
+- Flag if macros differ significantly from DB
+- Log suspicious recommendations
+
+Output:
+{
+  "passed": True/False,
+  "violations": ["msg1", "msg2"],
+  "flags": ["hallucination: unknown_food"],
+  "confidence": 0.95
+}
+
+Include:
+- Logging for audit trail
+- Type hints
+- Docstrings with examples
+- Unit test readiness
+
+Output complete GuardrailChecker class.
+```
+
+---
+
+### **Prompt 5: Sample Food Database**
+
+```
+Create data/sample_foods.csv
+
+Generate 50 representative Indian foods with realistic nutritional data.
+
+Format:
+food_name,region,vegetarian,calories,protein_g,carbs_g,fat_g,fiber_g,ayurvedic_type,cooking_method
+
+Examples to include:
+- Dal varieties (masoor dal, chana dal, moong dal)
+- Rice/grains (basmati, brown rice, ragi)
+- Vegetables (spinach, okra, cauliflower)
+- Paneer dishes (paneer tikka, palak paneer)
+- Legumes (chickpeas, lentils)
+- Regional dishes (idli, dosa, paratha, roti)
+- Spices/condiments (ghee, oil, tamarind)
+
+Requirements:
+- Use realistic IFCT 2017 values where possible
+- Include North, South, East, West Indian foods
+- Mark 95% as vegetarian (Indian context)
+- Include ayurvedic dosha (Vata, Pitta, Kapha balancing)
+- Cooking methods impact nutrition (fried vs. baked)
+
+Make it CSV ready to load into pandas/vector DB.
+Output: sample_foods.csv with 50 foods, all columns complete.
+```
+
+---
+
+### **Prompt 6: Jupyter Notebook - Data Exploration**
+
+```
+Create notebooks/01_data_exploration.ipynb
+
+Requirements:
+- Load sample_foods.csv into pandas
+- Exploratory data analysis:
+  1. Display basic stats (mean calories, macros by region)
+  2. Visualize macro distribution (scatter plot: protein vs carbs)
+  3. Count vegetarian vs non-vegetarian
+  4. Regional breakdown (bar chart)
+  5. Ayurvedic type distribution
+- Test VectorRetriever:
+  1. Load sample foods into vector DB (Chroma for local)
+  2. Run 5 test queries (e.g., "high protein breakfast")
+  3. Print top-5 results + similarity scores
+- Document findings:
+  - Data quality checks
+  - Any missing values
+  - Recommendations for Phase 2 (Vartan's large dataset)
+
+Make it beginner-friendly with comments. Output: complete .ipynb file.
+```
+
+---
+
+### **Prompt 7: Unit Tests**
+
+```
+Create tests/test_retriever.py
+
+Requirements:
+- Test VectorRetriever with Chroma (local, no API key needed)
+- Tests:
+  1. test_initialize_db() - DB connects successfully
+  2. test_index_documents() - Foods indexed correctly
+  3. test_search_basic() - Search returns k results
+  4. test_search_relevance() - Relevant foods ranked higher
+  5. test_metadata_preserved() - Metadata survives indexing
+  6. test_empty_search() - Handle edge cases
+  7. test_delete_index() - Cleanup works
+
+Use pytest fixtures for setup/teardown.
+Use sample_foods.csv as test data.
+Make it run without external APIs (Chroma = local).
+
+Output: complete test_retriever.py with pytest decorators.
+```
+
+---
+
+## **Quick Copy-Paste Workflow**
+
+**Option A: Build everything at once**
+```
+Use the MASTER PROMPT above - Claude Code generates all 7 files in one go
+```
+
+**Option B: Build step-by-step (Recommended)**
+```
+1. Prompt 1 → src/rag_pipeline.py (main orchestrator)
+   - Wait for output ✓
+   
+2. Prompt 2 → src/retriever.py (vector DB layer)
+   - Wait for output ✓
+   
+3. Prompt 3 → src/llm_chain.py (LLM integration)
+   - Wait for output ✓
+   
+4. Prompt 4 → src/guardrails.py (safety/validation)
+   - Wait for output ✓
+   
+5. Prompt 5 → data/sample_foods.csv (test data)
+   - Wait for output ✓
+   
+6. Prompt 6 → notebooks/01_data_exploration.ipynb (explore)
+   - Wait for output ✓
+   
+7. Prompt 8 (next) → Add utils.py + config.py
+   - Wait for output ✓
+   
+8. Test everything
+   - Run pytest
+   - Run notebook
+   - Test RAG end-to-end
+```
+
+---
+
+## **After Claude Code Generates Files**
+
+**Step 1: Save to GitHub**
+```bash
+# Copy generated code into your repo
+# Then:
+git add src/ data/ notebooks/ tests/
+git commit -m "[FEAT] Phase 1 - RAG pipeline skeleton
+
+- Implement CulRAG orchestrator class
+- Add VectorRetriever for Pinecone/Chroma
+- Add RAGChain for LLM integration
+- Add GuardrailChecker for validation
+- Create sample Indian foods database (50 items)
+- Add data exploration notebook
+- Add retriever unit tests"
+
+git push origin dev
+```
+
+**Step 2: Install Dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+**Step 3: Test Locally**
+```bash
+# Run tests
+pytest tests/test_retriever.py -v
+
+# Run notebook
+jupyter notebook notebooks/01_data_exploration.ipynb
+
+# Test RAG end-to-end (create test script)
+python -c "
+from src.rag_pipeline import CulRAG
+culrag = CulRAG(vector_db='chroma', llm_model='gpt-4')
+result = culrag.recommend('High-protein vegetarian breakfast')
+print(result)
+"
+```
+
+**Step 4: Update Kanban**
+```
+Move completed tasks:
+- [x] Set up vector DB retriever
+- [x] Create RAG pipeline
+- [x] Add LLM integration
+- [x] Create test data
+→ Move to ✅ Done
+```
+
+---
+
+## **Prompts for Phase 2 (After Phase 1 Done)**
+
+**Once Phase 1 is done, use these prompts:**
+
+```
+Prompt: "Create src/evaluator.py - Evaluation metrics"
+Prompt: "Build data/full_indian_foods.db - Large IFCT dataset"
+Prompt: "Create notebooks/02_retrieval_evaluation.ipynb - Test retrieval quality"
+Prompt: "Build API server - FastAPI endpoints for RAG system"
+```
+
+---
+
+## **START NOW**
+
+**Copy the MASTER PROMPT above into Claude Code and click Send.**
+
+Claude will generate all 7 files. Then:
+1. Save to your folder
+2. Commit to GitHub
+3. Run tests
+4. You're ready for Phase 2!
+
+**Need help with any prompt or getting errors?** Let me know and I'll refine it.
