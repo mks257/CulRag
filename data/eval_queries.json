@@ -1,0 +1,38 @@
+[
+  {
+    "query": "high protein vegetarian snack",
+    "relevant_foods": ["Paneer Tikka", "Sprouted Moong Salad", "Dhokla", "Palak Paneer"]
+  },
+  {
+    "query": "South Indian breakfast dish",
+    "relevant_foods": ["Idli", "Dosa (plain)", "Uttapam", "Upma"]
+  },
+  {
+    "query": "low calorie clear soup",
+    "relevant_foods": ["Rasam", "Buttermilk (Chaas)"]
+  },
+  {
+    "query": "North Indian lentil curry",
+    "relevant_foods": ["Masoor Dal", "Chana Dal", "Rajma (Kidney Bean Curry)", "Chana Masala (Chole)"]
+  },
+  {
+    "query": "Pitta-pacifying Ayurvedic food",
+    "relevant_foods": ["Masoor Dal", "Sambar", "Rasam", "Baingan Bharta", "Palak (Spinach) Sabzi"]
+  },
+  {
+    "query": "sweet dessert",
+    "relevant_foods": ["Payasam (Kheer)", "Jaggery (Gur)"]
+  },
+  {
+    "query": "shallow-fried snack",
+    "relevant_foods": ["Paratha (plain)", "Dosa (plain)", "Uttapam"]
+  },
+  {
+    "query": "steamed rice-based dish",
+    "relevant_foods": ["Idli", "Biryani (Vegetable)", "Pulao (Peas)", "Dhokla"]
+  },
+  {
+    "query": "non-vegetarian curry",
+    "relevant_foods": ["Chicken Curry", "Fish Curry", "Egg Curry"]
+  }
+]
