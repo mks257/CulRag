@@ -19,6 +19,7 @@ import math
 import os
 import threading
 import uuid
+import zlib
 from collections import Counter
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
@@ -128,10 +129,10 @@ class HealthResponse(BaseModel):
 
 
 def _demo_hash_embed(text: str) -> List[float]:
-    """Deterministic bag-of-words embedding used when no OpenAI key is set."""
+    """Deterministic (cross-process) bag-of-words embedding used when no OpenAI key is set."""
     vector = [0.0] * DEMO_EMBEDDING_DIM
     for word, count in Counter(text.lower().split()).items():
-        vector[hash(word) % DEMO_EMBEDDING_DIM] += count
+        vector[zlib.crc32(word.encode()) % DEMO_EMBEDDING_DIM] += count
     norm = math.sqrt(sum(v * v for v in vector)) or 1.0
     return [v / norm for v in vector]
 
