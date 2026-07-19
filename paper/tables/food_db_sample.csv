@@ -1,0 +1,6 @@
+food_name,region,vegetarian,calories,protein_g,carbs_g,fat_g,fiber_g,ayurvedic_type,cooking_method
+Masoor Dal,North,True,116,9.0,20.1,0.4,7.9,Pitta-pacifying,Pressure-cooked
+Chana Dal,North,True,164,10.3,27.4,2.6,7.6,Kapha-pacifying,Pressure-cooked
+Moong Dal,North,True,105,7.5,19.1,0.4,7.6,Tridoshic,Pressure-cooked
+Toor Dal (Arhar),South,True,121,7.0,22.0,0.4,5.0,Vata-aggravating,Pressure-cooked
+Urad Dal,South,True,105,7.6,17.9,0.6,4.9,Kapha-aggravating,Pressure-cooked
