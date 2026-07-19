@@ -39,6 +39,15 @@ CulRAG (src/rag_pipeline.py)  ── orchestrator: load_knowledge_base → retri
 Config: src/config.py + .env (see .env.example)
 ```
 
+Around the pipeline:
+- `src/api.py` — FastAPI server (`/api/recommend`, `/api/health`, `/api/feedback`);
+  offline demo mode with hash embeddings (see `serving-api` skill)
+- `culrag-frontend/` — React + Vite + Tailwind dashboard calling the API
+- `deployment/` — Dockerfile, Railway/Vercel configs
+- `paper/` — Paper 1 manuscript workspace: one .md per section, references.bib,
+  figure scripts (see `writing-the-paper` skill); also `paper/protocol.md` +
+  `paper/recruitment_kit/` — Paper 2 pilot-study protocol drafted for IRB review
+
 ## Data (what exists in `data/`)
 
 - `data/sample_foods.csv` — ~50 Indian foods, the working dataset until the full IFCT
@@ -50,10 +59,13 @@ Config: src/config.py + .env (see .env.example)
 
 ## Phases
 
-1. ✅ Core RAG pipeline skeleton (done)
-2. ✅ Evaluation framework & metrics (done)
-3. Data processing: full IFCT dataset import (Vartan) — in progress
-4. Experiments, tests, paper writing
+1. ✅ Core RAG pipeline skeleton
+2. ✅ Evaluation framework & metrics
+3. ✅ 3A: API + frontend dashboard; ✅ 3B: paper scaffolding + Methods draft;
+   deterministic baseline embeddings for offline runs
+4. In progress: full IFCT dataset import (Vartan), production-embedding evaluation runs
+   (current results.md numbers are hash-embedding placeholders), paper prose, Paper 2
+   pilot study (IRB review)
 
 ## Conventions
 

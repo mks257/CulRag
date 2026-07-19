@@ -22,6 +22,10 @@ numbers we'll compare against (hallucination rate, P@k), put them in the note.
 
 No entry → the paper effectively wasn't read. Duplicate check before adding.
 
+Downstream consumers: `paper/references.bib` (BibTeX entries are generated from this
+ledger — new ledger entries that will be cited need a bib entry with verified metadata)
+and `paper/related_work.md` (the prose section). Keep all three consistent.
+
 ## What to research (mapped to the paper's claims)
 
 | Claim in our paper | Literature needed |

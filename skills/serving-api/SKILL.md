@@ -1,36 +1,41 @@
 # Skill: Serving the API
 
-For the planned FastAPI server exposing CulRAG as endpoints (Phase 2+ item; fastapi and
-uvicorn are already in requirements.txt). Build this ONLY when the pipeline works
-end-to-end — the API is a thin wrapper, not the product.
+For work on the FastAPI server — it EXISTS at `src/api.py` (416 lines), with tests in
+`tests/test_api.py`. Read the file before changing it; this skill maps it.
 
-## Shape
+## What exists
 
-- One file to start: `src/api.py`. Split only when it outgrows one file.
-- Endpoints:
-  - `POST /recommend` — body: `{query: str, constraints: {...}}` (constraints dict format
-    from `src/guardrails.py`); returns the structured recommendation JSON from `RAGChain`
-    PLUS the guardrail report (`passed`, `violations`, `flags`, `confidence`). Never strip
-    the guardrail report — the safety signal is the point of the system.
-  - `GET /health` — returns vector DB status from `VectorRetriever.get_stats()`.
-- Request/response models: Pydantic (v2 is installed) — mirror the constraints dict and
-  recommendation JSON exactly; don't invent a second schema.
+Endpoints (all under `/api`):
+- `GET /api/health` → `HealthResponse` — pipeline status + indexed-food count
+- `POST /api/recommend` → `RecommendationResponse` — body: `RecommendationRequest`
+  (query + constraints); builds constraints dict for `GuardrailChecker`, filters
+  retrieved foods, returns structured recommendation
+- `POST /api/feedback` → `FeedbackResponse` — appends user feedback to a local file
+  (`append_feedback`)
+
+Pydantic models: `RecommendationRequest`, `Macros`, `RecommendationResponse`,
+`FeedbackRequest`, `FeedbackResponse`, `HealthResponse` — mirror them, don't invent a
+second schema. Startup is a FastAPI `lifespan` handler that loads the pipeline once.
+
+**Demo mode:** the API can run fully offline using `_demo_hash_embed` (deterministic
+hash embeddings) and `_demo_recommendation` — no API keys. This powers the frontend
+dashboard (`culrag-frontend/`, React + Vite; calls these `/api/*` routes) and local dev.
+Demo-mode output is pipeline validation only — never quote its numbers as results.
 
 ## Rules
 
-1. **Validate at the boundary.** Pydantic models enforce types; additionally cap query
-   length and constraint list sizes. This endpoint calls paid LLM APIs — an unvalidated
-   input is an unbounded bill.
-2. **The API never bypasses guardrails.** `CulRAG.recommend()` with checks, always.
-3. Startup: load knowledge base + init retriever ONCE in a FastAPI lifespan handler, not
-   per-request. Chroma local by default; Pinecone via env config.
-4. Errors: LLM/API failures return 503 with a plain message; never a fabricated
-   recommendation. Log full detail server-side, return no stack traces or key material.
-5. This is a research demo, not production: no auth beyond an optional shared token from
-   `.env`, no rate limiting beyond an in-process counter. Say so in the README when the
-   API lands. Add real auth only if it's ever exposed beyond localhost.
-6. Include a disclaimer field in every response: research system, not medical advice —
-   consistent with the paper's ethics section.
+1. **The API never bypasses guardrails.** Recommendations go through the constraint
+   checks; the guardrail signal stays in the response.
+2. **Validate at the boundary.** Pydantic enforces types; keep caps on query length and
+   list sizes — `/api/recommend` can call paid LLM APIs.
+3. Errors: LLM/API failures return an error status with a plain message; never a
+   fabricated recommendation, no stack traces or key material in responses.
+4. Endpoint or model changes are breaking changes for `culrag-frontend/src/types/` and
+   `tests/test_api.py` — update all three together.
+5. Research demo, not production: no real auth or rate limiting; don't expose beyond
+   localhost / the demo deployment without adding both.
+6. Deployment configs live in `deployment/` (Dockerfile, railway.json, vercel.json) —
+   see `deployment/README.md`.
 
 ## Run
 
@@ -38,5 +43,4 @@ end-to-end — the API is a thin wrapper, not the product.
 .venv\Scripts\python.exe -m uvicorn src.api:app --reload
 ```
 
-Test: `tests/test_api.py` with FastAPI's `TestClient`, LLM call mocked — offline like all
-other tests.
+Tests (offline, like all tests): `.venv\Scripts\python.exe -m pytest tests/test_api.py -v`

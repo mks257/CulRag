@@ -38,8 +38,14 @@ Only one variable differs per comparison — otherwise the numbers claim nothing
 
 ## Where things live
 
-- Experiment scripts: `scripts/` (one script per experiment, runnable end-to-end with
-  one command; notebooks are for exploration only, nothing in the paper comes from an
-  unversioned notebook cell).
-- Outputs: `results/<run_id>/` — gitignore raw LLM outputs if large; commit configs and
-  metric summaries always.
+- Paper-facing eval tooling exists: `paper/tables/generate_eval_results.py` writes
+  `paper/tables/eval_results.csv`; figure scripts in `paper/figures/` read repo data.
+  Extend these rather than creating a parallel pipeline.
+- New experiment scripts: `scripts/` (one script per experiment, runnable end-to-end
+  with one command; notebooks are for exploration only, nothing in the paper comes from
+  an unversioned notebook cell).
+- Run outputs: `results/<run_id>/` — gitignore raw LLM outputs if large; commit configs
+  and metric summaries always.
+- ⚠️ Current committed numbers come from the **deterministic hash-embedding baseline**
+  (offline pipeline validation). Every comparison in the paper must be re-run with
+  production embeddings; never mix hash-embedding and production numbers in one table.

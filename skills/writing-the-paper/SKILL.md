@@ -3,6 +3,28 @@
 For drafting the CulRAG paper (target: IEEE Access / Frontiers in AI) with claims that
 survive review.
 
+## The manuscript workspace EXISTS: `paper/`
+
+One .md file per section (`abstract.md` … `conclusion.md`), assembled via `paper.md`
+(status tracker + submission checklist). Read `paper/README.md` first. Key rules baked
+into the scaffold:
+- `references.bib` entries come only from RELATED_WORK.md or verified foundational
+  papers; entries marked `TODO verify` must be confirmed against their URL before
+  submission — never guess metadata.
+- Section stubs contain per-paragraph outlines as HTML comments with citation keys
+  already wired — expand comments into prose, don't restructure.
+- Figures are standalone scripts in `paper/figures/` writing to `figures/output/`;
+  re-run after the full-dataset evaluation. Tables source from `paper/tables/*.csv`.
+- **Current numbers in `results.md` are hash-embedding placeholders** (offline pipeline
+  validation) — clearly labeled; replace with production-embedding runs before any
+  submission draft.
+- `@Kavya` / `@Vartan` comments mark passage ownership — respect them.
+- Methods (`methods.md`) is the substantive draft and anchors everything else.
+
+A second paper track exists: `paper/protocol.md` + `paper/recruitment_kit/` — the pilot
+study (Paper 2), drafted for IRB review. Human-subjects material: never edit consent or
+survey wording without flagging that it needs IRB re-review.
+
 ## Structure (IEEE Access style)
 
 1. Abstract — problem, approach, headline numbers, one-line contribution
