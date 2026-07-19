@@ -6,6 +6,7 @@ function stands in for the OpenAI embeddings used in production.
 
 import math
 import uuid
+import zlib
 from collections import Counter
 from typing import List
 
@@ -18,12 +19,12 @@ EMBEDDING_DIM = 64
 
 
 def fake_embed(text: str) -> List[float]:
-    """Deterministic bag-of-words hashing embedding; no network calls."""
+    """Deterministic (cross-process) bag-of-words hashing embedding; no network calls."""
     vector = [0.0] * EMBEDDING_DIM
     words = text.lower().split()
     counts = Counter(words)
     for word, count in counts.items():
-        idx = hash(word) % EMBEDDING_DIM
+        idx = zlib.crc32(word.encode()) % EMBEDDING_DIM
         vector[idx] += count
 
     norm = math.sqrt(sum(v * v for v in vector)) or 1.0
