@@ -2,9 +2,9 @@
 
 <!-- Target: ~1000 words. Status: STUB with baseline numbers.
 IMPORTANT: numbers below are the OFFLINE BASELINE (CRC32 bag-of-words embedding,
-exact cosine k-NN, 50-food dev subset, 9 queries), regenerated reproducibly by
-paper/tables/generate_eval_results.py. They validate the pipeline, NOT semantic
-retrieval quality. Replace after the production-embedding + full-IFCT run.
+exact cosine k-NN, 50-food dev subset, 30 grounded queries), regenerated
+reproducibly by paper/tables/generate_eval_results.py. They validate the pipeline,
+NOT semantic retrieval quality. Replace after the production-embedding + full-IFCT run.
 (Note: earlier notebook runs used Python's salted hash() through Chroma's HNSW
 index and were NOT reproducible across processes — do not quote those numbers.) -->
 
@@ -13,10 +13,17 @@ index and were NOT reproducible across processes — do not quote those numbers.
 <!-- [TABLE 2 GOES HERE: from paper/tables/eval_results.csv] -->
 <!-- [FIGURE 2 GOES HERE: per-query retrieval metrics bar chart] -->
 
-Offline baseline (crc32 embedding, exact k-NN, k=5, n=9 queries — reproducible):
-- Mean Precision@5: 0.133   [PLACEHOLDER — replace with production-embedding run]
-- Mean Recall@5:    0.185   [PLACEHOLDER]
-- Mean MRR:         0.211   [PLACEHOLDER]
+Offline baseline (crc32 embedding, exact k-NN, k=5, n=30 queries — reproducible):
+- Mean Precision@5: 0.153   [PLACEHOLDER — replace with production-embedding run]
+- Mean Recall@5:    0.216   [PLACEHOLDER]
+- Mean MRR:         0.260   [PLACEHOLDER]
+
+<!-- The 30-query grounded eval set (data/eval_queries.json) covers the matrix from
+skills/evaluating-rag: regional, dosha, macro/nutrition, cooking-method, and non-veg
+negative cases. All relevant_foods are verified to exist verbatim in the dataset by
+scripts/validate_foods.py. As a crude-embedding baseline these numbers are expected to
+be low; they exist to prove the eval harness end-to-end, not to characterize retrieval. -->
+
 
 <!-- Narrative to write once real numbers exist:
 - Which query categories retrieve well (explicit attributes: region, cooking method)
