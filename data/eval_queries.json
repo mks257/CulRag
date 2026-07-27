@@ -34,5 +34,89 @@
   {
     "query": "non-vegetarian curry",
     "relevant_foods": ["Chicken Curry", "Fish Curry", "Egg Curry"]
+  },
+  {
+    "query": "North Indian dal",
+    "relevant_foods": ["Masoor Dal", "Chana Dal", "Moong Dal"]
+  },
+  {
+    "query": "West Indian flatbread",
+    "relevant_foods": ["Jowar Roti", "Bajra Roti"]
+  },
+  {
+    "query": "East Indian dish",
+    "relevant_foods": ["Mustard Oil", "Egg Curry", "Fish Curry"]
+  },
+  {
+    "query": "paneer dish",
+    "relevant_foods": ["Paneer Tikka", "Palak Paneer", "Paneer Butter Masala"]
+  },
+  {
+    "query": "high fiber lentil or legume dish",
+    "relevant_foods": ["Masoor Dal", "Chana Dal", "Moong Dal", "Chana Masala (Chole)", "Rajma (Kidney Bean Curry)"]
+  },
+  {
+    "query": "Kapha-pacifying food",
+    "relevant_foods": ["Chana Dal", "Ragi (Finger Millet) Porridge", "Bajra Roti", "Upma", "Dhokla"]
+  },
+  {
+    "query": "Vata-pacifying food",
+    "relevant_foods": ["Jowar Roti", "Poha", "Ghee", "Fish Curry", "Jaggery (Gur)"]
+  },
+  {
+    "query": "Tridoshic balanced dish",
+    "relevant_foods": ["Moong Dal", "Basmati Rice (cooked)", "Whole Wheat Roti", "Idli", "Mixed Vegetable Curry"]
+  },
+  {
+    "query": "high protein non-vegetarian dish",
+    "relevant_foods": ["Chicken Curry", "Fish Curry", "Egg Curry"]
+  },
+  {
+    "query": "steamed dish",
+    "relevant_foods": ["Idli", "Biryani (Vegetable)", "Dhokla", "Pulao (Peas)"]
+  },
+  {
+    "query": "raw uncooked preparation",
+    "relevant_foods": ["Curd (Dahi)", "Buttermilk (Chaas)", "Sprouted Moong Salad", "Coconut Chutney", "Mint-Coriander Chutney"]
+  },
+  {
+    "query": "roasted flatbread",
+    "relevant_foods": ["Jowar Roti", "Bajra Roti", "Whole Wheat Roti"]
+  },
+  {
+    "query": "low fat vegetarian dish",
+    "relevant_foods": ["Masoor Dal", "Moong Dal", "Idli", "Basmati Rice (cooked)", "Whole Wheat Roti"]
+  },
+  {
+    "query": "high calorie cooking fat",
+    "relevant_foods": ["Ghee", "Mustard Oil"]
+  },
+  {
+    "query": "creamy paneer curry",
+    "relevant_foods": ["Palak Paneer", "Paneer Butter Masala"]
+  },
+  {
+    "query": "millet-based dish",
+    "relevant_foods": ["Ragi (Finger Millet) Porridge", "Jowar Roti", "Bajra Roti"]
+  },
+  {
+    "query": "yogurt-based food",
+    "relevant_foods": ["Curd (Dahi)", "Buttermilk (Chaas)"]
+  },
+  {
+    "query": "vegetable side dish",
+    "relevant_foods": ["Aloo Gobi", "Bhindi Masala (Okra)", "Baingan Bharta", "Palak (Spinach) Sabzi", "Cauliflower Curry"]
+  },
+  {
+    "query": "high carbohydrate rice dish",
+    "relevant_foods": ["Biryani (Vegetable)", "Pulao (Peas)", "Basmati Rice (cooked)"]
+  },
+  {
+    "query": "Kapha-aggravating rich dish",
+    "relevant_foods": ["Paneer Tikka", "Paneer Butter Masala", "Paratha (plain)", "Biryani (Vegetable)", "Payasam (Kheer)"]
+  },
+  {
+    "query": "chutney or condiment",
+    "relevant_foods": ["Tamarind Chutney", "Mint-Coriander Chutney", "Coconut Chutney"]
   }
 ]

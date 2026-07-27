@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "culrag-api",
+      "runtimeExecutable": ".venv/bin/uvicorn",
+      "runtimeArgs": ["src.api:app", "--port", "8000"],
+      "port": 8000
+    },
+    {
+      "name": "culrag-frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "culrag-frontend"],
+      "port": 3000
+    }
+  ]
+}
