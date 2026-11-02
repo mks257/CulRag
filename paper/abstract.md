@@ -11,9 +11,10 @@ the Indian Food Composition Tables (IFCT 2017), enriched with regional and
 Ayurvedic attributes. CulRAG couples vector retrieval with a rule-based
 guardrail layer that validates every recommendation for vegetarian
 compliance, calorie targets, allergens, and hallucinated foods or
-macronutrients. On a hand-labeled evaluation set, the system achieves
-[PLACEHOLDER: X% Precision@5, Y% Recall@5, Z MRR] with a hallucination rate
-of [PLACEHOLDER: H%] before guardrails and [PLACEHOLDER: H'%] after. We
+macronutrients. On a hand-labeled evaluation set, an offline
+baseline with a hash-based embedding achieves Precision@5 of 0.153, Recall@5 of
+0.216, and MRR of 0.260 over 30 queries, while the guardrail layer flags
+unknown foods and macronutrient deviations in generated recommendations. We
 release the system, evaluation framework, and interactive dashboard to
 support culturally grounded nutrition AI research.
 
