@@ -14,9 +14,9 @@ index and were NOT reproducible across processes — do not quote those numbers.
 <!-- [FIGURE 2 GOES HERE: per-query retrieval metrics bar chart] -->
 
 Offline baseline (crc32 embedding, exact k-NN, k=5, n=30 queries — reproducible):
-- Mean Precision@5: 0.153   [PLACEHOLDER — replace with production-embedding run]
-- Mean Recall@5:    0.216   [PLACEHOLDER]
-- Mean MRR:         0.260   [PLACEHOLDER]
+- Mean Precision@5: 0.153
+- Mean Recall@5:    0.216
+- Mean MRR:         0.260
 
 <!-- The 30-query grounded eval set (data/eval_queries.json) covers the matrix from
 skills/evaluating-rag: regional, dosha, macro/nutrition, cooking-method, and non-veg
@@ -39,7 +39,7 @@ a constraint violation. We already have real examples from the Phase 3A smoke te
 (e.g., "Paneer Tikka with Dal" macro deviations flagged at 150-6150%). -->
 
 Findings to fill:
-- Hallucination rate across [PLACEHOLDER: N] pipeline runs: [PLACEHOLDER]%
+- Hallucination rate across pipeline runs: to be reported with the production-embedding run
 - False-flag analysis: how often does the 30% macro-deviation threshold flag
   *correct* multi-food meals? (Known behavior: per-100g KB values vs. whole-meal
   macros — discuss threshold calibration.)

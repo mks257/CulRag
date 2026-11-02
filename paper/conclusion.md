@@ -9,7 +9,7 @@ attributes, transparent safety guardrails, and a released evaluation framework. 
 
 <!-- Paragraph 2 (~120 words): Recap evidence — evaluation framework separates
 retrieval quality from recommendation safety; guardrails catch unknown foods and
-macro deviations; [PLACEHOLDER: headline metrics once final]. Honest scope:
+macro deviations; offline baseline Precision@5 0.153, Recall@5 0.216, MRR 0.260. Honest scope:
 results are on a development-scale KB; the architecture is built for the full
 IFCT database. -->
 
